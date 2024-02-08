@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
     fichierSource = open(argv[1], O_RDONLY);
     
 
-    fichierDestination = open("fichierCreer.txt", O_WRONLY | O_TRUNC | O_CREAT, 0666);
+    fichierDestination = open("fichier2", O_WRONLY | O_TRUNC | O_CREAT, 0666);
 
     int nb_octet = read(fichierSource, buff, buffer_size);
 
