@@ -1,28 +1,11 @@
 CC = gcc
-CFLAGS = -W -Wall
-SRC_DIR = Src
-INCLUDE_DIR = Include
-OBJ_DIR = Obj
+CFLAGS = -W -Wall -g
+OBJETS = $(patsubst %.c, %.o, $(wildcard *.c))
 
-
-SRCS = $(wildcard $(SRC_DIR)/*.c)
-
-OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
-
-LDFLAGS = -g 
-EXECUTABLE = main
-
-$(EXECUTABLE): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
-
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE_DIR)
-
-doc:
-	doxygen Doxyfile
-
+main : $(OBJETS)
+	$(CC) $(CFLAGS) -o $@ $^ 
+%.o : %.c
+	$(CC) $(CFLAGS) -c $<
 clean:
-	rm -f $(EXECUTABLE) $(OBJS)
-	rm -rf doc
+	rm -f main $(OBJETS)
 	@echo "Clean done."
