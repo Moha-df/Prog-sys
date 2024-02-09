@@ -17,7 +17,7 @@ void raler (const char * msg)
 
 int main(int argc, char* argv[]){
 
-    int buffer_size;
+    int buffer_size = 4096;
     char buff[buffer_size];
 
     int fichierSource;
@@ -29,7 +29,7 @@ int main(int argc, char* argv[]){
 
     int nb_octet = read(fichierSource, buff, buffer_size);
 
-    fichierDestination = write(fichierDestination, buff, nb_octet);
+    write(fichierDestination, buff, nb_octet);
 
     CHK(close(fichierSource));
     CHK(close(fichierDestination));
