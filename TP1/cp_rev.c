@@ -14,7 +14,6 @@ void raler (const char * msg)
     exit (EXIT_FAILURE);
 }
 
-
 int main(int argc, char* argv[]){
     // Préconditions : fichier source, fichier destination, taille du buffer
     // argv[1] : nom du fichier source
@@ -22,25 +21,7 @@ int main(int argc, char* argv[]){
     // argv[3] : taille du buffer en octets
 
 
-    int buffer_size = atoi(argv[3]);
-    char buff[buffer_size];
-
-    int fichierSource;
-    int fichierDestination;
-    fichierSource = open(argv[1], O_RDONLY);
     
-
-    fichierDestination = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0666);
-
-    int nb_octet;
-
-    while ((nb_octet = read(fichierSource, buff, buffer_size)) > 0) {
-        write(fichierDestination, buff, nb_octet);
-    }
-
-
-    CHK(close(fichierSource));
-    CHK(close(fichierDestination));
 
 
     return 0;

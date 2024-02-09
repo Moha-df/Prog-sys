@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -W -Wall -g
 OBJETS = $(patsubst %.c, %.o, $(wildcard *.c))
 
-all: cp_sys cp_std
+all: cp_sys cp_std cp_rev
 
 cp_sys : cp_sys.o
 	$(CC) $(CFLAGS) -o $@ $^
@@ -17,6 +17,13 @@ cp_std : cp_std.o
 cp_std.o : cp_std.c
 	$(CC) $(CFLAGS) -c $<
 
+cp_rev : cp_rev.o
+	$(CC) $(CFLAGS) -o $@ $^
+
+cp_rev.o : cp_rev.c
+	$(CC) $(CFLAGS) -c $<
+
+
 clean:
-	rm -f cp_sys cp_std $(OBJETS)
+	rm -f cp_sys cp_std cp_rev $(OBJETS)
 	@echo "Clean done."
