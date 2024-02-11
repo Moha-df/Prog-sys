@@ -1,28 +1,14 @@
 CC = gcc
 CFLAGS = -W -Wall -g
-OBJETS = $(patsubst %.c, %.o, $(wildcard *.c))
+OBJETS = cp_sys.o cp_std.o cp_rev.o
 
 all: cp_sys cp_std cp_rev
 
-cp_sys : cp_sys.o
+cp_sys cp_std cp_rev: % : %.o
 	$(CC) $(CFLAGS) -o $@ $^
 
-cp_sys.o : cp_sys.c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $<
-
-
-cp_std : cp_std.o
-	$(CC) $(CFLAGS) -o $@ $^
-
-cp_std.o : cp_std.c
-	$(CC) $(CFLAGS) -c $<
-
-cp_rev : cp_rev.o
-	$(CC) $(CFLAGS) -o $@ $^
-
-cp_rev.o : cp_rev.c
-	$(CC) $(CFLAGS) -c $<
-
 
 clean:
 	rm -f cp_sys cp_std cp_rev $(OBJETS)
