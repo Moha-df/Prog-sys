@@ -43,5 +43,22 @@ Question
     |  4096            |    0m0,052s    |
     |  8192            |    0m0,045s    |
 
-2.
+2. La taille du buffer utiliser par les fonctions de bibliothèque comme fopen(), fgetc() et fputc() ont un petit buffer 
+    mais qui depend il n'est pas explicitement spécifiée par l'utilisateur, mais est déterminée par l'implémentation de 
+    la fonction et peut varier selon la plateforme
 
+Exercice 4
+
+Voir cp_rev.c
+
+Question 
+
+1. Avec SEEK_END :  lseek(fichierSource, 0, SEEK_END);
+
+2. Avec SEEK_SET :  lseek(fichierSource, i, SEEK_SET);
+
+3. Tout d'abord nous pouvons connaitre ca taille avec seek end comme nous l'avons vu
+   Mais aussi avec sys/stat.h et lutilisation de la fonction stat()
+   Ou encore avec fseek() et ftell()
+
+Exercice 5
