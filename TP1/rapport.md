@@ -62,3 +62,19 @@ Question
    Ou encore avec fseek() et ftell()
 
 Exercice 5
+
+Voir read_int.c et write_int.c
+
+Question 
+
+1. Essayer de lire a une position negative peut entraîner un comportement indéfini 
+   ou une erreur, en l'occurence dans mon programme j'obtiens des valeur presente dans la memoire
+
+2. Pareil que la question precedente
+
+3. On peut obtenir la taille du fichier de la maniere suivante
+   off_t file_size = lseek(fd, 0, SEEK_END);
+   Puis placer un if afin deviter quon ai des valeur negative ou des valeurs superieur a la taille du fichier
+   if (0 >= pos >= file_size)
+
+4. Le systeme d'exploitation etend automatiquement le fichier jusqu'a lendroit ou nous avons ecrit.
