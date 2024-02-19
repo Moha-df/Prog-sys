@@ -48,6 +48,40 @@ Question
 
 Exercice 3
 
+Voir ls_rec.c
+
+
+1.     while ((entry = readdir(dir)) != NULL) { // Lis tout les fichiers ou repertoire dans le répertoire
+        if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0 && entry->d_name[0]!= '.') {
+            snprintf(new_path, sizeof(new_path), "%s/%s", path, entry->d_name); // stock dans new path : path/entry->d_name
+            printf("%s\n", new_path);
+            DIR *subdir = opendir(new_path); // verifie si new path est un dir ou un fichier
+            if (subdir) {
+                closedir(subdir);
+                ls_rec(new_path);            // si new path est un dir, appelle la fonction ls_rec recursivement
+            }
+        }
+    }
+    comme ci dessus
+
+2.  Le deuxieme argument de snprintf et de taille sizeof(new_path) , ou new path est defini comme tel
+    char new_path[PATH_MAX];
+    
+3. Readdir retourne NULL si il arrive a la fin du repertoire ou quil rencontre une erreur.
+
+4. entry = readdir(dir) != NULL
 
 
 
+Exercice 4
+
+1.  while ((bytes_read = read(fd, buf, sizeof(buf))) > 0) {
+        if (strstr(buf, search_string) != NULL) {
+            printf("%s\n", filename);
+            break;
+        }
+    }
+
+    Pour rechercher une chaine au sein dun fichier on lis le fichier avec un buffer de taille 4096 octets , et on comparera ce tableau de 4096
+    octets a notre string a laide de la fonction strstr qui renverra un pointeur vers le début de la première occurrence de la sous-chaîne, soit
+    null, dans notre cas nous n'utilisons pas ca valeur de retour mais la comparons a NULL, si elle ne l'es pas cest quon a trouver le string et donc on renvoi le nom du fichiers.
